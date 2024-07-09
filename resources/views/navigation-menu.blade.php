@@ -21,6 +21,16 @@
                         {{ __('Products') }}
                     </x-nav-link>
                 </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link href="{{ route('promotions.index') }}" :active="request()->routeIs('promotions.index')">
+                        {{ __('Promotions') }}
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link href="{{ route('inventories.index') }}" :active="request()->routeIs('inventories.index')">
+                        {{ __('Inventories') }}
+                    </x-nav-link>
+                </div>
             </div>
 
             <div class="hidden sm:flex sm:items-center sm:ms-6">
@@ -147,6 +157,16 @@
             <x-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
+        </div>
+        <div class="pt-2 pb-3 space-y-1">
+            <x-nav-link href="{{ route('products.index') }}" :active="request()->routeIs('products.index')">
+                {{ __('Products') }}
+            </x-nav-link>
+        </div>
+        <div class="pt-2 pb-3 space-y-1">
+            <x-nav-link href="{{ route('promotions.index') }}" :active="request()->routeIs('promotions.index')">
+                {{ __('Promotions') }}
+            </x-nav-link>
         </div>
 
         <!-- Responsive Settings Options -->

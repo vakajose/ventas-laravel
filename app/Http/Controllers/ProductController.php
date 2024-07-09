@@ -50,7 +50,7 @@ class ProductController extends Controller
      */
     public function show($id): View
     {
-        $product = Product::find($id);
+        $product = Product::findOrFail($id);
 
         return view('product.show', compact('product'));
     }
@@ -68,8 +68,9 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateProductRequest $request, Product $product): RedirectResponse
+    public function update(UpdateProductRequest $request, $product_id): RedirectResponse
     {
+        $product = Product::findOrFail($product_id);
         $product->update($request->validated());
 
         return Redirect::route('products.index')
@@ -78,7 +79,7 @@ class ProductController extends Controller
 
     public function destroy($id): RedirectResponse
     {
-        Product::find($id)->delete();
+        Product::findOrFail($id)->delete();
 
         return Redirect::route('products.index')
             ->with('success', 'Product deleted successfully');

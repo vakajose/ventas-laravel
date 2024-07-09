@@ -36,6 +36,18 @@
             <main>
                 {{ $slot }}
             </main>
+            <footer class="bg-white dark:bg-gray-800 shadow sm:rounded-lg mt-8 p-4 flex justify-between items-center">
+                <div class="text-left text-gray-500 dark:text-gray-400">
+                    @if(config('settings.show_total_visits'))
+                        <span>{{ __('Total Visits:') }} {{ $visitCount }}</span>
+                    @else
+                        <span>{{ __('Visits:') }} {{ $visitCount }}</span>
+                    @endif
+                </div>
+                <div class="text-right text-gray-500 dark:text-gray-400">
+                    <span>{{ now()->format('d-m-Y H:i:s') }}</span>
+                </div>
+            </footer>
         </div>
 
         @stack('modals')
