@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" x-data="{ theme: '{{ $theme }}' }" :class="{ 'dark': theme === 'dark' }">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,6 +16,20 @@
 
         <!-- Styles -->
         @livewireStyles
+        <script>
+            document.addEventListener('alpine:init', () => {
+                Alpine.data('themeData', () => ({
+                    theme: '{{ $theme }}',
+                    setTheme(theme) {
+                        this.theme = theme;
+                        document.documentElement.classList.toggle('dark', theme === 'dark');
+                        axios.post('{{ route('settings.changeTheme') }}', { theme: theme })
+                            .then(response => console.log(response.data))
+                            .catch(error => console.error(error));
+                    }
+                }))
+            })
+        </script>
     </head>
     <body class="font-sans antialiased">
         <x-banner />

@@ -45,5 +45,11 @@
     "Total Products": "Total de Productos",
     "Details of the inventory": "Detalles del inventario",
     "Date": "Fecha",
-    "Current Stock": "Stock Actual"
+    "Current Stock": "Stock Actual",
+    "Language changed successfully.": "Idioma cambiado exitosamente.",
+    "Theme changed successfully.": "Tema cambiado exitosamente.",
+    "Settings": "Configuraciones",
+    "Change application settings.": "Cambiar configuraciones de la aplicación.",
+    "Language": "Idioma",
+    "Theme": "Tema"
 }
