@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" x-data="{ theme: '{{ $theme }}' }" :class="{ 'dark': theme === 'dark' }">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" x-data="{ theme: '{{ $theme }}' }" :class="{ 'dark': theme === 'dark' || (theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches) }">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -20,15 +20,42 @@
             document.addEventListener('alpine:init', () => {
                 Alpine.data('themeData', () => ({
                     theme: '{{ $theme }}',
+                    init() {
+                        this.applyTheme();
+                        this.observeSystemThemeChange();
+                    },
                     setTheme(theme) {
                         this.theme = theme;
-                        document.documentElement.classList.toggle('dark', theme === 'dark');
+                        this.applyTheme();
                         axios.post('{{ route('settings.changeTheme') }}', { theme: theme })
                             .then(response => console.log(response.data))
                             .catch(error => console.error(error));
+                    },
+                    applyTheme() {
+                        if (this.theme === 'system') {
+                            this.applySystemTheme();
+                        } else {
+                            document.documentElement.classList.toggle('dark', this.theme === 'dark');
+                        }
+                    },
+                    applySystemTheme() {
+                        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                        document.documentElement.classList.toggle('dark', systemPrefersDark);
+                    },
+                    observeSystemThemeChange() {
+                        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+                            if (this.theme === 'system') {
+                                this.applySystemTheme();
+                            }
+                        });
+                    },
+                    themeClass() {
+                        return {
+                            'dark': this.theme === 'dark' || (this.theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches)
+                        };
                     }
-                }))
-            })
+                }));
+            });
         </script>
     </head>
     <body class="font-sans antialiased">

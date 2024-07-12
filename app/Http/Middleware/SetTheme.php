@@ -5,7 +5,6 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
-use Symfony\Component\HttpFoundation\Response;
 
 class SetTheme
 {
@@ -17,9 +16,10 @@ class SetTheme
     public function handle(Request $request, Closure $next)
     {
         if (Session::has('theme')) {
-            view()->share('theme', Session::get('theme'));
+            $theme = Session::get('theme');
+            view()->share('theme', $theme);
         } else {
-            view()->share('theme', 'light');
+            view()->share('theme', 'system'); // Default to system theme
         }
 
         return $next($request);

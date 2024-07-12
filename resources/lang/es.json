@@ -51,5 +51,6 @@
     "Settings": "Configuraciones",
     "Change application settings.": "Cambiar configuraciones de la aplicación.",
     "Language": "Idioma",
-    "Theme": "Tema"
+    "Theme": "Tema",
+    "System Default": "Predeterminado del Sistema"
 }
