@@ -4,6 +4,7 @@
 use App\Http\Controllers\InventoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\PromotionController;
+use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\SettingsController;
 use App\Http\Middleware\PageVisitCounter;
 use App\Http\Middleware\SetLocale;
@@ -29,6 +30,8 @@ Route::middleware([
     Route::resource('products', ProductController::class);
     Route::resource('promotions', PromotionController::class);
     Route::resource('inventories', InventoryController::class);
+    Route::resource('reservations', ReservationController::class);
+
 
     Route::get('settings', [SettingsController::class, 'index'])->name('settings.index');
     Route::post('settings/change-language', [SettingsController::class, 'changeLanguage'])->name('settings.changeLanguage');

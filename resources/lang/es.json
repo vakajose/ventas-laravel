@@ -52,5 +52,15 @@
     "Change application settings.": "Cambiar configuraciones de la aplicación.",
     "Language": "Idioma",
     "Theme": "Tema",
-    "System Default": "Predeterminado del Sistema"
+    "System Default": "Predeterminado del Sistema",
+    "Reservations": "Reservas",
+    "Create Reservation": "Crear Reserva",
+    "Unit Price": "Precio Unitario",
+    "Add Product": "Agregar Producto",
+    "Save Reservation": "Guardar Reserva",
+    "Reservation List": "Lista de Reservas",
+    "A list of all the Reservations": "Una lista de todas las Reservas",
+    "User": "Usuario",
+    "Reservation Date": "Fecha de Reserva",
+    "Total Cost": "Costo Total"
 }

@@ -44,7 +44,7 @@
                                         <select name="products[0][product_id]" class="product-select bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
                                             <option value="">{{ __('Select Product') }}</option>
                                             @foreach($products as $product)
-                                                <option value="{{ $product->id }}" data-stock="{{ $product->stock_quantity }}">{{ $product->code }} - {{ $product->name }}</option>
+                                                <option value="{{ $product->id }}" data-price="{{ $product->price }}" data-stock="{{ $product->stock_quantity }}">{{ $product->code }} - {{ $product->name }}</option>
                                             @endforeach
                                         </select>
                                     </td>
