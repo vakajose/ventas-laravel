@@ -70,18 +70,19 @@ class ProductController extends Controller
      */
     public function update(UpdateProductRequest $request, $product_id): RedirectResponse
     {
+
         $product = Product::findOrFail($product_id);
         $product->update($request->validated());
 
         return Redirect::route('products.index')
             ->with('success', 'Product updated successfully');
     }
-
-    public function destroy($id): RedirectResponse
-    {
-        Product::findOrFail($id)->delete();
-
-        return Redirect::route('products.index')
-            ->with('success', 'Product deleted successfully');
-    }
+//
+//    public function destroy($id): RedirectResponse
+//    {
+//        Product::findOrFail($id)->delete();
+//
+//        return Redirect::route('products.index')
+//            ->with('success', 'Product deleted successfully');
+//    }
 }

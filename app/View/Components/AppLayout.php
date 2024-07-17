@@ -2,6 +2,7 @@
 
 namespace App\View\Components;
 
+use App\Models\Menu;
 use Carbon\Carbon;
 use Illuminate\View\Component;
 use Illuminate\View\View;
@@ -10,6 +11,7 @@ use App\Models\PageVisit;
 class AppLayout extends Component
 {
     public $visitCount;
+    public $menus;
 
     /**
      * Create a new component instance.
@@ -17,6 +19,8 @@ class AppLayout extends Component
     public function __construct()
     {
         $this->visitCount = $this->getPageVisitCount();
+        $this->menus = $this->getMenus();
+
     }
 
     /**
@@ -42,5 +46,10 @@ class AppLayout extends Component
                 return $query->where('visit_date', $today);
             })
             ->sum('visit_count');
+    }
+
+    protected function getMenus()
+    {
+        return Menu::orderBy('order')->get();
     }
 }

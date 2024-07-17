@@ -11,36 +11,53 @@
                 </div>
 
                 <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
-                    </x-nav-link>
-                </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link href="{{ route('products.index') }}" :active="request()->routeIs('products.index')">
-                        {{ __('Products') }}
-                    </x-nav-link>
-                </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link href="{{ route('promotions.index') }}" :active="request()->routeIs('promotions.index')">
-                        {{ __('Promotions') }}
-                    </x-nav-link>
-                </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link href="{{ route('inventories.index') }}" :active="request()->routeIs('inventories.index')">
-                        {{ __('Inventories') }}
-                    </x-nav-link>
-                </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link href="{{ route('reservations.index') }}" :active="request()->routeIs('reservations.index')">
-                        {{ __('Reservations') }}
-                    </x-nav-link>
-                </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link href="{{ route('sales.index') }}" :active="request()->routeIs('sales.index')">
-                        {{ __('Sales') }}
-                    </x-nav-link>
-                </div>
+
+                @foreach($menus as $menu)
+                    @if(($menu->role_access === 'admin' && auth()->user()->can('admin')) || ($menu->role_access === 'access-common' && auth()->user()->can('access-common')))
+                        <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                            <x-nav-link href="{{ route($menu->route) }}" :active="request()->routeIs($menu->route)">
+                                {{ __($menu->name) }}
+                            </x-nav-link>
+                        </div>
+                    @endif
+                @endforeach
+
+{{--                @can('admin')--}}
+{{--                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">--}}
+{{--                    <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">--}}
+{{--                        {{ __('Dashboard') }}--}}
+{{--                    </x-nav-link>--}}
+{{--                </div>--}}
+{{--                @endcan--}}
+{{--                @can('access-common')--}}
+{{--                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">--}}
+{{--                    <x-nav-link href="{{ route('products.index') }}" :active="request()->routeIs('products.index')">--}}
+{{--                        {{ __('Products') }}--}}
+{{--                    </x-nav-link>--}}
+{{--                </div>--}}
+{{--                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">--}}
+{{--                    <x-nav-link href="{{ route('promotions.index') }}" :active="request()->routeIs('promotions.index')">--}}
+{{--                        {{ __('Promotions') }}--}}
+{{--                    </x-nav-link>--}}
+{{--                </div>--}}
+{{--                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">--}}
+{{--                    <x-nav-link href="{{ route('reservations.index') }}" :active="request()->routeIs('reservations.index')">--}}
+{{--                        {{ __('Reservations') }}--}}
+{{--                    </x-nav-link>--}}
+{{--                </div>--}}
+{{--                @endcan--}}
+{{--                @can('admin')--}}
+{{--                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">--}}
+{{--                        <x-nav-link href="{{ route('inventories.index') }}" :active="request()->routeIs('inventories.index')">--}}
+{{--                            {{ __('Inventories') }}--}}
+{{--                        </x-nav-link>--}}
+{{--                    </div>--}}
+{{--                    <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">--}}
+{{--                        <x-nav-link href="{{ route('sales.index') }}" :active="request()->routeIs('sales.index')">--}}
+{{--                            {{ __('Sales') }}--}}
+{{--                        </x-nav-link>--}}
+{{--                    </div>--}}
+{{--                @endcan--}}
             </div>
 
             <div class="hidden sm:flex sm:items-center sm:ms-6">

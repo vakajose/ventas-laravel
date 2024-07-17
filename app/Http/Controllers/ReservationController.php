@@ -14,7 +14,13 @@ class ReservationController extends Controller
 {
     public function index(Request $request)
     {
-        $reservations = Reservation::with('user')->paginate();
+        $reservations = [];
+        if(Auth::user()->can('admin')){
+            $reservations = Reservation::with('user')->paginate();
+        }elseif (Auth::user()->can('access-common')){
+            $reservations = Reservation::where('user_id', Auth::id())->with('user')->paginate();
+        }
+
         return view('reservations.index', compact('reservations'))
             ->with('i', ($request->input('page', 1) - 1) * $reservations->perPage());
     }
@@ -39,18 +45,27 @@ class ReservationController extends Controller
                     'product_id' => $product['id'],
                     'reserved_quantity' => $product['quantity'],
                 ]);
-
-                //$productModel = Product::findOrFail($product['product_id']);
-                //$productModel->decrement('stock_quantity', $product['quantity']);
             }
         });
 
         return redirect()->route('reservations.index')->with('success', __('Reservation created successfully.'));
     }
 
-    public function show(Reservation $reservation)
+    public function show($id)
     {
-        $reservation->load('details.product');
+        $reservation = null;
+        if(Auth::user()->can('admin')){
+            $reservation = Reservation::findOrfail($id)->with('user');
+        }elseif (Auth::user()->can('access-common')){
+            $reservation = Reservation::where([
+                'id' => $id,
+                'user_id' => Auth::id(),
+            ])->with('user')->first();
+        }
+        if(!$reservation){
+            return redirect()->route('reservations.index')->with('error', __('Reservation not found.'));
+        }
+        $reservation->load('reservationDetails.product');
         return view('reservations.show', compact('reservation'));
     }
 

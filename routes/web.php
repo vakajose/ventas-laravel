@@ -33,10 +33,11 @@ Route::middleware([
             return view('dashboard');
         })->name('dashboard');
 
-        Route::resource('products', ProductController::class);
+        Route::resource('products', ProductController::class)->except(['show','index','destroy']);
         Route::resource('inventories', InventoryController::class);
         Route::resource('sales', SalesController::class);
         Route::resource('payments', PaymentController::class);
+        Route::resource('promotions', PromotionController::class)->except(['show']);
         Route::post('/sales/{id}/cancel', [SalesController::class, 'cancel'])->name('sales.cancel');
         Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
         Route::post('/users', [UserController::class, 'store'])->name('users.store');
@@ -44,8 +45,9 @@ Route::middleware([
     });
 
     Route::middleware([CheckRole::class . ':administrador,cliente'])->group(function () {
+        Route::resource('products', ProductController::class)->except(['create','store', 'edit','update','destroy']);
         Route::resource('reservations', ReservationController::class);
-        Route::resource('promotions', PromotionController::class);
+        Route::resource('promotions', PromotionController::class)->only('index');
         Route::get('user/profile', function () {
             return view('profile.show');
         })->name('profile.show');

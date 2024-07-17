@@ -62,7 +62,10 @@
         <x-banner />
 
         <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
-            @livewire('navigation-menu')
+{{--            @livewire('navigation-menu',['menus' => $menus])--}}
+{{--            <livewire:navigation-menu :menus="$menus" />--}}
+
+            <x-menu :$menus />
 
             <!-- Page Heading -->
             @if (isset($header))

@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Create') }} Product
+            {{ __('Create') }} {{__('Product')}}
         </h2>
     </x-slot>
 
@@ -11,8 +11,7 @@
                 <div class="w-full">
                     <div class="sm:flex sm:items-center">
                         <div class="sm:flex-auto">
-                            <h1 class="text-base font-semibold leading-6 text-gray-900 dark:text-gray-100">{{ __('Create') }} Product</h1>
-                            <p class="mt-2 text-sm text-gray-700 dark:text-gray-300">Add a new {{ __('Product') }}.</p>
+                            <h1 class="text-base font-semibold leading-6 text-gray-900 dark:text-gray-100">{{ __('Add a new Product') }}</h1>
                             @if ($errors->any())
                                 <div class="p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800" role="alert">
                                     <ul class="list-disc pl-5 space-y-1">
@@ -34,7 +33,7 @@
                                 <form method="POST" action="{{ route('products.store') }}" role="form" enctype="multipart/form-data">
                                     @csrf
 
-                                    @include('product.form')
+                                    @include('product.form',['edit' => false])
                                 </form>
                             </div>
                         </div>

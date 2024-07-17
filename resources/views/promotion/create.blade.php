@@ -11,8 +11,7 @@
                 <div class="w-full">
                     <div class="sm:flex sm:items-center">
                         <div class="sm:flex-auto">
-                            <h1 class="text-base font-semibold leading-6 text-gray-900 dark:text-gray-100">{{ __('Create Promotion') }} </h1>
-                            <p class="mt-2 text-sm text-gray-700 dark:text-gray-300">Add a new {{ __('Promotion') }}.</p>
+                            <h1 class="text-base font-semibold leading-6 text-gray-900 dark:text-gray-100">{{ __('Add a new Promotion') }}</h1>
                             @if ($errors->any())
                                 <div class="p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800" role="alert">
                                     <ul class="list-disc pl-5 space-y-1">

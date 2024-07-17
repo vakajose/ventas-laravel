@@ -20,7 +20,6 @@ class CheckRole
     public function handle(Request $request, Closure $next, ...$roles)
     {
         $user = Auth::user();
-        error_log($user);
 
         if (!$user || !in_array($user->role, $roles)) {
             if ($user->role == 'administrador'){
