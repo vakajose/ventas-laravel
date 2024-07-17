@@ -27,7 +27,7 @@ class SettingsController extends Controller
 
     public function changeTheme(Request $request)
     {
-        $request->validate(['theme' => 'required|in:light,dark']);
+        $request->validate(['theme' => 'required|in:light,dark,system']);
         Session::put('theme', $request->theme);
 
         return redirect()->back()->with('success', __('Theme changed successfully.'));
