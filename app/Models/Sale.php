@@ -11,7 +11,7 @@ class Sale extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id', 'sale_date', 'total_amount'
+        'user_id', 'sale_date', 'total_amount', 'state'
     ];
 
     public function user()

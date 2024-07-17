@@ -36,6 +36,11 @@
                         {{ __('Reservations') }}
                     </x-nav-link>
                 </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link href="{{ route('sales.index') }}" :active="request()->routeIs('sales.index')">
+                        {{ __('Sales') }}
+                    </x-nav-link>
+                </div>
             </div>
 
             <div class="hidden sm:flex sm:items-center sm:ms-6">
@@ -130,6 +135,9 @@
                             <x-dropdown-link href="{{ route('settings.index') }}">
                                 {{ __('Settings') }}
                             </x-dropdown-link>
+                            <x-dropdown-link href="{{ route('users.index') }}">
+                                {{ __('Users') }}
+                            </x-dropdown-link>
                             <div class="border-t border-gray-200 dark:border-gray-600"></div>
 
                             <!-- Authentication -->
@@ -185,6 +193,11 @@
                 {{ __('Reservations') }}
             </x-nav-link>
         </div>
+        <div class="pt-2 pb-3 space-y-1">
+            <x-nav-link href="{{ route('sales.index') }}" :active="request()->routeIs('sales.index')">
+                {{ __('Sales') }}
+            </x-nav-link>
+        </div>
 
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200 dark:border-gray-600">
@@ -208,6 +221,9 @@
                 </x-responsive-nav-link>
                 <x-dropdown-link href="{{ route('settings.index') }}">
                     {{ __('Settings') }}
+                </x-dropdown-link>
+                <x-dropdown-link href="{{ route('users.index') }}">
+                    {{ __('Users') }}
                 </x-dropdown-link>
                 @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
                     <x-responsive-nav-link href="{{ route('api-tokens.index') }}" :active="request()->routeIs('api-tokens.index')">

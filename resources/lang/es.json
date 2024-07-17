@@ -62,5 +62,11 @@
     "A list of all the Reservations": "Una lista de todas las Reservas",
     "User": "Usuario",
     "Reservation Date": "Fecha de Reserva",
-    "Total Cost": "Costo Total"
+    "Total Cost": "Costo Total",
+    "Sales": "Ventas",
+    "A list of all the sales": "Una lista de todas las ventas",
+    "Save Sale": "Guardar Venta",
+    "Sale Date": "Fecha de Venta",
+    "Sale List": "Lista de Ventas",
+    "Are you sure you want to cancel this sale?": "¿Estás seguro de cancelar esta venta?"
 }
