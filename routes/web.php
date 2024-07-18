@@ -4,6 +4,7 @@
 use App\Http\Controllers\InventoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\PromotionController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\SalesController;
 use App\Http\Controllers\PaymentController;
@@ -16,7 +17,7 @@ use App\Http\Middleware\CheckRole;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('dashboard');
 });
 
 Route::middleware([
@@ -29,19 +30,17 @@ Route::middleware([
 ])->group(function () {
 
     Route::middleware([CheckRole::class . ':administrador'])->group(function () {
-        Route::get('/dashboard', function () {
-            return view('dashboard');
-        })->name('dashboard');
-
+        Route::get('/dashboard', [ReportController::class, 'index'])->name('dashboard');
         Route::resource('products', ProductController::class)->except(['show','index','destroy']);
-        Route::resource('inventories', InventoryController::class);
-        Route::resource('sales', SalesController::class);
-        Route::resource('payments', PaymentController::class);
+        Route::resource('inventories', InventoryController::class)->except(['edit','update','destroy']);
+        Route::resource('sales', SalesController::class)->except(['edit','update','destroy']);
+        Route::resource('payments', PaymentController::class)->only(['create', 'store']);
         Route::resource('promotions', PromotionController::class)->except(['show']);
         Route::post('/sales/{id}/cancel', [SalesController::class, 'cancel'])->name('sales.cancel');
         Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
         Route::post('/users', [UserController::class, 'store'])->name('users.store');
         Route::get('/users', [UserController::class, 'index'])->name('users.index'); // Para el listado de usuarios
+
     });
 
     Route::middleware([CheckRole::class . ':administrador,cliente'])->group(function () {

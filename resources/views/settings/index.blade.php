@@ -12,11 +12,7 @@
                     <h1 class="text-base font-semibold leading-6 text-gray-900 dark:text-gray-100">{{ __('Settings') }}</h1>
                     <p class="mt-2 text-sm text-gray-700 dark:text-gray-300">{{ __('Change application settings.') }}</p>
 
-                    @if (session('success'))
-                        <div class="mt-4 bg-green-100 dark:bg-green-200 text-green-700 dark:text-green-800 p-4 rounded-lg">
-                            {{ session('success') }}
-                        </div>
-                    @endif
+                    <x-validation-errors />
 
                     <form method="POST" action="{{ route('settings.changeLanguage') }}" class="mt-6">
                         @csrf

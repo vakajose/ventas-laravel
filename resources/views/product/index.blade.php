@@ -12,6 +12,7 @@
                     <div class="sm:flex sm:items-center">
                         <div class="sm:flex-auto">
                             <h1 class="text-base font-semibold leading-6 text-gray-900 dark:text-gray-100">{{__('A list of all the')}} {{ __('Products') }}</h1>
+                            <x-validation-errors />
                         </div>
                         @can('admin')
                             <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">

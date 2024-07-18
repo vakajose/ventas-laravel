@@ -53,10 +53,11 @@ class ReservationController extends Controller
 
     public function show($id)
     {
-        $reservation = null;
         if(Auth::user()->can('admin')){
-            $reservation = Reservation::findOrfail($id)->with('user');
+            error_log('admin');
+            $reservation = Reservation::findOrfail($id);
         }elseif (Auth::user()->can('access-common')){
+            error_log('common');
             $reservation = Reservation::where([
                 'id' => $id,
                 'user_id' => Auth::id(),
@@ -96,8 +97,22 @@ class ReservationController extends Controller
         return redirect()->route('reservations.index')->with('success', __('Reservation updated successfully.'));
     }
 
-    public function destroy(Reservation $reservation)
+    public function destroy($id)
     {
+        if(Auth::user()->can('admin')){
+            $reservation = Reservation::findOrfail($id);
+        }elseif (Auth::user()->can('access-common')){
+            error_log('common');
+            $reservation = Reservation::where([
+                'id' => $id,
+                'user_id' => Auth::id(),
+            ])->with('user')->first();
+        }
+        if(!$reservation){
+            return redirect()->route('reservations.index')->with('error', __('Reservation not found.'));
+        }
+        //eliminar primero los detalles de la reserva
+        $reservation->reservationDetails()->delete();
         $reservation->delete();
         return redirect()->route('reservations.index')->with('success', __('Reservation deleted successfully.'));
     }

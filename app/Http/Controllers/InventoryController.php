@@ -69,28 +69,4 @@ class InventoryController extends Controller
         $inventory->load('inventoryDetails.product');
         return view('inventory.show', compact('inventory'));
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Inventory $inventory)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateInventoryRequest $request, $inventory_id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy($inventory_id)
-    {
-        //
-    }
 }

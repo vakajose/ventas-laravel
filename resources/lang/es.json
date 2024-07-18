@@ -97,5 +97,22 @@
     "Save Payment": "Guardar Pago",
     "Details": "Detalles",
     "Total Reservations": "Total de Reservas",
-    "No Promotions Available": "No hay Promociones Disponibles"
+    "No Promotions Available": "No hay Promociones Disponibles",
+    "Add New User": "Agregar Nuevo Usuario",
+    "Sales Report by Date": "Reporte de Ventas por Fecha",
+    "Sales Report by Product": "Reporte de Ventas por Producto",
+    "Top Selling Products": "Productos Más Vendidos",
+    "Top 10 Most Visited Pages": "Top 10 Páginas Más Visitadas",
+    "Reports": "Reportes",
+    "Visits": "Visitas",
+    "Inventory created successfully.": "Inventario creado exitosamente.",
+    "Payment processed successfully.": "Pago procesado exitosamente.",
+    "Product created successfully.": "Producto creado exitosamente.",
+    "Product updated successfully.": "Producto actualizado exitosamente.",
+    "Promotion created successfully.": "Promoción creada exitosamente.",
+    "Promotion deleted successfully.": "Promoción eliminada exitosamente.",
+    "Promotion updated successfully.": "Promoción actualizada exitosamente.",
+    "Sale created successfully.": "Venta creada exitosamente.",
+    "Sale canceled successfully.": "Venta cancelada exitosamente.",
+    "User created successfully.": "Usuario creado exitosamente."
 }
