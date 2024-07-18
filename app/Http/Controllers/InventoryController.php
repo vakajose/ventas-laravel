@@ -57,7 +57,7 @@ class InventoryController extends Controller
             }
         });
 
-        return redirect()->route('inventories.index')->with('success', 'Inventory created successfully.');
+        return redirect()->route('inventories.index')->with('success', __('Inventory created successfully.'));
     }
 
     /**

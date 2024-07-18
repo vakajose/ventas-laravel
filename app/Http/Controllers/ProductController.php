@@ -42,7 +42,7 @@ class ProductController extends Controller
         Product::create($request->validated());
 
         return Redirect::route('products.index')
-            ->with('success', 'Product created successfully.');
+            ->with('success', __('Product created successfully.'));
     }
 
     /**
@@ -75,7 +75,7 @@ class ProductController extends Controller
         $product->update($request->validated());
 
         return Redirect::route('products.index')
-            ->with('success', 'Product updated successfully.');
+            ->with('success', __('Product updated successfully.'));
     }
 
 }

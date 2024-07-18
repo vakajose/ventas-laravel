@@ -74,7 +74,7 @@ class PromotionController extends Controller
         $promotion->update($request->validated());
 
         return Redirect::route('promotions.index')
-            ->with('success', 'Promotion updated successfully');
+            ->with('success', __('Promotion updated successfully'));
     }
 
     public function destroy($id): RedirectResponse
@@ -82,6 +82,6 @@ class PromotionController extends Controller
         Promotion::find($id)->delete();
 
         return Redirect::route('promotions.index')
-            ->with('success', 'Promotion deleted successfully');
+            ->with('success', __('Promotion deleted successfully'));
     }
 }
